@@ -57,7 +57,7 @@ Antes da implementação, foi desenvolvida a [modelagem física](https://github.
 
 Seguindo a modelagem física, foram criadas as novas tabelas em um novo schema chamado **dw**, que será o nosso Data Warehouse:
 
-```postgresql
+```sql
 CREATE SCHEMA dw;
 
 CREATE TABLE dw."DIM_film" (
@@ -118,7 +118,7 @@ CREATE TABLE dw."FACT_rental" (
 
 Em seguida, populamos as tabelas do nosso Data warehouse:
 
-```postgresql
+```sql
 INSERT INTO dw."DIM_film" (film_id, film, rental_rate)
 SELECT DISTINCT
     film_id,
@@ -206,7 +206,7 @@ ORDER BY 1;
 
 1. Qual filme gerou mais receita ($$$) para a empresa?
 
-   ```postgresql
+   ```sql
    SELECT
    	film,
    	SUM(amount) AS receita
@@ -227,7 +227,7 @@ ORDER BY 1;
 
 2. Qual a categoria de filme mais locada?
 
-   ```postgresql
+   ```sql
    SELECT
    	category,
    	COUNT(category_id) AS num_rentals
@@ -246,7 +246,7 @@ ORDER BY 1;
 
 3. De qual cidade são os clientes que mais locam filmes?
 
-   ```postgresql
+   ```sql
    SELECT
    	city,
    	COUNT(city_id) AS num_rentals
@@ -268,7 +268,7 @@ ORDER BY 1;
 
 4. Ranking dos 10 atores/atrizes que mais tiveram filmes locados?
 
-   ```postgresql
+   ```sql
    SELECT
    	actor,
    	COUNT(actor_id) AS num_rentals
